@@ -94,22 +94,10 @@ export class UserController extends BaseController {
      *             type: object
      *             example:
      *               name: userName
-     *               email: userEmail
-     *               phone: userPhone
-     *               status: Ativo
      *             required:
      *               - name
-     *               - email
-     *               - phone
-     *               - status
      *             properties:
      *               name:
-     *                 type: string
-     *               email:
-     *                 type: string
-     *               phone:
-     *                 type: string
-     *               status:
      *                 type: string
      *     responses:
      *       $ref: '#/components/responses/baseCreate'
@@ -119,10 +107,7 @@ export class UserController extends BaseController {
     @Middlewares(UserValidator.post())
     public async add(req: Request, res: Response): Promise<void> {
         const newUser: DeepPartial<User> = {
-            name: req.body.name,
-            email: req.body.email,
-            phone: req.body.phone,
-            status: req.body.status
+            name: req.body.name
         };
 
         await new UserRepository().insert(newUser);
