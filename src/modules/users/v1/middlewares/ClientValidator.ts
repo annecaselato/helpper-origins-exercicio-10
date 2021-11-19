@@ -26,7 +26,15 @@ export class ClientValidator extends BaseValidator {
         name: BaseValidator.validators.name,
         email: BaseValidator.validators.email,
         phone: BaseValidator.validators.phone,
-        status: BaseValidator.validators.status,
+        status: {
+            in: 'body',
+            isString: true,
+            isIn: {
+                options: [['Ativo', 'Inativo']]
+            },
+            trim: true,
+            errorMessage: 'Status inválido'
+        },
         id: {
             ...BaseValidator.validators.id(new ClientRepository()),
             errorMessage: 'Cliente não encontrado'
