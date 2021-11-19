@@ -93,7 +93,10 @@ export class ClientController extends BaseController {
     @Middlewares(ClientValidator.post())
     public async add(req: Request, res: Response): Promise<void> {
         const newClient: DeepPartial<Client> = {
-            name: req.body.name
+            name: req.body.name,
+            email: req.body.email,
+            phone: req.body.phone,
+            status: req.body.status
         };
 
         await new ClientRepository().insert(newClient);
@@ -145,6 +148,9 @@ export class ClientController extends BaseController {
         const client: Client = req.body.clientRef;
 
         client.name = req.body.name;
+        client.email = req.body.email;
+        client.phone = req.body.phone;
+        client.status = req.body.status;
 
         await new ClientRepository().update(client);
 
