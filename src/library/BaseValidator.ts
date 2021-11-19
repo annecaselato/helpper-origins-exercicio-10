@@ -76,15 +76,6 @@ export class BaseValidator {
             },
             trim: true,
             errorMessage: 'Telefone inválido'
-        },
-        status: {
-            in: 'body',
-            isString: true,
-            isIn: {
-                options: [['Ativo', 'Inativo']]
-            },
-            trim: true,
-            errorMessage: 'Status inválido'
         }
     };
 
