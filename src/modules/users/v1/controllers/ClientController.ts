@@ -120,16 +120,20 @@ export class ClientController extends BaseController {
      *           schema:
      *             type: object
      *             example:
+     *               id: userId
      *               name: userName
      *               email: userEmail
      *               phone: userPhone
      *               status: userStatus
      *             required:
+     *               - id
      *               - name
      *               - email
      *               - phone
      *               - status
      *             properties:
+     *               id:
+     *                 type: string
      *               name:
      *                 type: string
      *               email:
