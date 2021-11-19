@@ -53,6 +53,35 @@ export class ClientController extends BaseController {
 
     /**
      * @swagger
+     * /v1/client/{clientId}:
+     *   get:
+     *     summary: Retorna informações de um cliente
+     *     tags: [Clients]
+     *     consumes:
+     *       - application/json
+     *     produces:
+     *       - application/json
+     *     parameters:
+     *       - in: path
+     *         name: clientId
+     *         email: clientEmail
+     *         phone: clientPhone
+     *         status: clientStatus
+     *         schema:
+     *           type: string
+     *         required: true
+     *     responses:
+     *       $ref: '#/components/responses/baseResponse'
+     */
+    @Get('/:id')
+    @PublicRoute()
+    @Middlewares(ClientValidator.onlyId())
+    public async getOne(req: Request, res: Response): Promise<void> {
+        RouteResponse.success({ ...req.body.clientRef }, res);
+    }
+
+    /**
+     * @swagger
      * /v1/client:
      *   post:
      *     summary: Cadastra um cliente
@@ -67,10 +96,10 @@ export class ClientController extends BaseController {
      *           schema:
      *             type: object
      *             example:
-     *               name: userName
-     *               email: userEmail
-     *               phone: userPhone
-     *               status: userStatus
+     *               name: clientName
+     *               email: clientEmail
+     *               phone: clientPhone
+     *               status: clientStatus
      *             required:
      *               - name
      *               - email
@@ -120,11 +149,11 @@ export class ClientController extends BaseController {
      *           schema:
      *             type: object
      *             example:
-     *               id: userId
-     *               name: userName
-     *               email: userEmail
-     *               phone: userPhone
-     *               status: userStatus
+     *               id: clientId
+     *               name: clientName
+     *               email: clientEmail
+     *               phone: clientPhone
+     *               status: clientStatus
      *             required:
      *               - id
      *               - name
