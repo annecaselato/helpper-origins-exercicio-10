@@ -11,6 +11,9 @@ import { BaseValidator } from '../../../../library/BaseValidator';
 // Entities
 import { Client } from '../../../../library/database/entity';
 
+// Models
+import { EnumStatus } from '../../../../models';
+
 /**
  * ClientValidator
  *
@@ -28,9 +31,10 @@ export class ClientValidator extends BaseValidator {
         phone: BaseValidator.validators.phone,
         status: {
             in: 'body',
-            isString: true,
-            isIn: {
-                options: [['Ativo', 'Inativo']]
+            custom: {
+                options: status => {
+                    return Object.values(EnumStatus).includes(status);
+                }
             },
             trim: true,
             errorMessage: 'Status inválido'
