@@ -64,9 +64,6 @@ export class ClientController extends BaseController {
      *     parameters:
      *       - in: path
      *         name: clientId
-     *         email: clientEmail
-     *         phone: clientPhone
-     *         status: clientStatus
      *         schema:
      *           type: string
      *         required: true
