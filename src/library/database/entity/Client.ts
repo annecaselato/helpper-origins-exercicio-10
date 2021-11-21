@@ -1,5 +1,8 @@
 import { Entity, ObjectID, ObjectIdColumn, Column, BaseEntity } from 'typeorm';
 
+// Models
+import { EnumStatus } from '../../../models';
+
 @Entity()
 export class Client extends BaseEntity {
     @ObjectIdColumn()
@@ -14,6 +17,6 @@ export class Client extends BaseEntity {
     @Column({ unique: true })
     public phone: string;
 
-    @Column()
-    public status: string;
+    @Column({ type: 'enum', enum: EnumStatus })
+    public status: EnumStatus;
 }
