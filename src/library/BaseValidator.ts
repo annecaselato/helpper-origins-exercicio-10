@@ -60,6 +60,22 @@ export class BaseValidator {
                 }
             },
             errorMessage: 'Nome inválido'
+        },
+        email: {
+            in: 'body',
+            isString: true,
+            isEmail: true,
+            trim: true,
+            errorMessage: 'Email inválido'
+        },
+        phone: {
+            in: 'body',
+            isString: true,
+            matches: {
+                options: [/^\(?[1-9]{2}\)?(?:[2-8]|9[1-9])[0-9]{3}-?[0-9]{4}$/]
+            },
+            trim: true,
+            errorMessage: 'Telefone inválido'
         }
     };
 
